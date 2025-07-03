@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django-ninja-knox"
+dynamic = ["version"]
+description="Opaque token authentication for use with Django Ninja"
+readme = "README.md"
+license = "MIT"
+
+keywords = ["Django", "Ninja", "REST", "API", "Authentication", "auth"]
+
+authors = [
+  {name = "Nick Wilde"},
+]
+
+dependencies = [
+    "django>5.1",
+    "django-ninja>=1.4.3",
+]
+
+requires-python = ">=3.8"
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+
+    "Environment :: Web Environment",
+
+    "Framework :: Django :: 5",
+    
+    "Intended Audience :: Developers",
+
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
+[project.urls]
+Repository = "https://github.com/nickjwilde/django-ninja-knox"
+
+[tool.setuptools]
+packages = ["ninja_knox"]
+
+[tool.setuptools.dynamic]
+version = {attr = "ninja_knox.__version__"}
+
+[tool.coverage.run]
+source=["."]
+branch=true
+command_line="-m pytest"
+disable_warnings = [
+    "no-ctracer",
+]
+
+[tool.coverage.report]
+omit = [
+  "*sgi.py",
+  "*_mock.py",
+  "**/settings/*.py",
+  "**/migrations/*.py",
+]
+fail_under = 100
+show_missing = true
+skip_covered = true
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE="tests.settings"
+addopts = "--reuse-db"
