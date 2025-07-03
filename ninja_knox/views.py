@@ -10,7 +10,7 @@ def login(request):
     return token
 
 
-router.post('/login', auth=BasicAuth(), response=AuthTokenShema)(login)
+router.post("/login", auth=BasicAuth(), response=AuthTokenShema)(login)
 
 
 def logout(request):
@@ -19,7 +19,7 @@ def logout(request):
     return 204, None
 
 
-router.post('/logout', response={204: None})(logout)
+router.post("/logout", response={204: None})(logout)
 
 
 def logoutall(request):
@@ -28,4 +28,4 @@ def logoutall(request):
     return 204, None
 
 
-router.post('/logoutall', response={204: None})(logoutall)
+router.post("/logoutall", response={204: None})(logoutall)

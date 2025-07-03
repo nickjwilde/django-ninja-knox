@@ -12,21 +12,38 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        migrations.swappable_dependency(getattr(settings, 'KNOX_TOKEN_MODEL', ninja_knox_settings.KNOX_TOKEN_MODEL)),
+        migrations.swappable_dependency(
+            getattr(settings, "KNOX_TOKEN_MODEL", ninja_knox_settings.KNOX_TOKEN_MODEL)
+        ),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='AuthToken',
+            name="AuthToken",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('token', models.CharField(db_index=True, max_length=64)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('expiry', models.DateTimeField(blank=True, null=True)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='auth_tokens', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("token", models.CharField(db_index=True, max_length=64)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("expiry", models.DateTimeField(blank=True, null=True)),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="auth_tokens",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]
